@@ -10,6 +10,9 @@
 import Message from './components/common/Message';
 
 export default {
-  components: { Message }
+  components: { Message },
+  created() {
+    this.$vuetify.theme.dark = true;
+  }
 };
 </script>

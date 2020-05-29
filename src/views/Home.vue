@@ -1,37 +1,22 @@
 <template>
   <div id="home">
-    <app-header />
-    <v-content style="height: 100vh">
-      <v-navigation-drawer color="primary">
-        <v-list>
-          <v-list-item v-for="item in items" :key="item.title" link>
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
+    <app-sidebar :drawer="drawer" />
+    <app-header @toggleDrawer="drawer = !drawer" />
+    <v-content>
+      hello
     </v-content>
   </div>
 </template>
 
 <script>
 import AppHeader from '../components/content/AppHeader';
+import AppSidebar from '../components/content/AppSidebar';
 
 export default {
-  components: { AppHeader },
+  components: { AppHeader, AppSidebar },
   data() {
     return {
-      items: [
-        { title: '仪表盘', icon: 'mdi-view-dashboard' },
-        { title: '用户管理', icon: 'mdi-account-box-multiple' },
-        { title: '标签管理', icon: 'mdi-tag-multiple' },
-        { title: '文章管理', icon: 'mdi-text-box-multiple' }
-      ]
+      drawer: null
     };
   }
 };

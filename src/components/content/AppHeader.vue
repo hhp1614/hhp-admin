@@ -1,9 +1,8 @@
 <template>
-  <v-app-bar app color="primary" dark>
+  <v-app-bar app clipped-left>
     <div class="d-flex align-center">
-      <v-avatar size="48">
-        <v-img src="../../assets/avatar.png" alt="Avatar" transition="scale-transition" contain />
-      </v-avatar>
+      <v-app-bar-nav-icon @click.stop="$emit('toggleDrawer')"></v-app-bar-nav-icon>
+      <h2 class="ml-6">后台管理</h2>
     </div>
 
     <v-spacer></v-spacer>
@@ -29,13 +28,12 @@ import config from '../../config';
 import { mapState } from 'vuex';
 
 export default {
-  data() {
-    return {
-      baseURL: config.baseURL
-    };
-  },
+  data: () => ({
+    baseURL: config.baseURL
+  }),
   computed: {
     ...mapState(['userInfo']),
+    // 问候语
     greetingText() {
       const h = new Date().getHours();
       if (h >= 23 || h <= 3) return '深夜了，早点休息~';
