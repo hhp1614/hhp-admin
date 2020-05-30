@@ -3,7 +3,9 @@
     <app-sidebar :drawer="drawer" />
     <app-header @toggleDrawer="drawer = !drawer" />
     <v-content>
-      hello
+      <v-container>
+        <router-view />
+      </v-container>
     </v-content>
   </div>
 </template>

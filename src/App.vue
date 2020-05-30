@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <router-view></router-view>
+    <router-view />
     <!-- 全局消息组件 -->
     <message />
   </v-app>
