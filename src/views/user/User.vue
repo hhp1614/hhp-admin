@@ -1,6 +1,6 @@
 <template>
   <div>
-    <add-btn @click="dialog = { show: true, title: '添加用户' }" text="添加用户" />
+    <add-btn @click="add" text="添加用户" />
     <v-data-table
       :headers="tableHeader"
       :items="tableData"
@@ -20,14 +20,14 @@
       <form-item-text v-model="form.email" label="邮箱" />
       <form-item-select v-model="form.role" :items="roleList" label="角色" />
       <form-item-textarea v-model="form.summary" label="简介" />
-      <upload-avatar v-model="form.avatar" label="头像" />
+      <upload-avatar v-model="form.avatar" label="选择头像" />
     </dialog-form>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import { apiUserAdd, apiUserDetail, apiUserEdit, apiUserList } from '../../api';
+import { apiUserAdd, apiUserDelete, apiUserDetail, apiUserEdit, apiUserList } from '../../api';
 import TableActions from '../../components/common/TableActions';
 import Pagination from '../../components/common/Pagination';
 import DialogForm from '../../components/common/DialogForm';
@@ -68,8 +68,8 @@ export default {
       dialog: dialogDefault,
       form: formDefault,
       roleList: [
-        { text: '普通用户', value: '1' },
-        { text: '管理员', value: '2' }
+        { text: '普通用户', value: 1 },
+        { text: '管理员', value: 2 }
       ]
     };
   },
@@ -90,18 +90,28 @@ export default {
       const { page, size } = this.pagination;
       const res = await apiUserList({ page, size, username: this.username });
       this.tableData = res.data.map(item => {
-        item.role_text = this.roleList.find(i => i.value === String(item.role)).text || '未知';
+        item.role_text = this.roleList.find(i => i.value === item.role).text;
         return item;
       });
       this.updatePagination({ page: res.page, size: res.size, total: res.total });
     },
+    add() {
+      this.form = formDefault;
+      this.dialog = { show: true, title: '添加用户' }
+    },
     async detail(item) {
-      this.form = await apiUserDetail(item.id);
+      const res = await apiUserDetail(item.id);
+      res.role += '';
+      this.form = res;
       this.dialog.show = true;
       this.dialog.title = '编辑用户';
     },
-    del(item) {
-      console.log(item);
+    async del(item) {
+      const ok = confirm('确定删除？');
+      if (!ok) return;
+      const res = await apiUserDelete(item.id);
+      this.$common.successMessage(res.msg);
+      await this.getData();
     },
     async submit() {
       const form = this.$common.getForm(this.form);

@@ -10,7 +10,7 @@
       <v-card-actions>
         <v-spacer />
         <v-btn @click="input(false)" text>取消</v-btn>
-        <v-btn @click="$emit('submit')" text>提交</v-btn>
+        <v-btn :loading="$store.state.loading" @click="$emit('submit')" text>提交</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -26,6 +26,11 @@ export const apiUserEdit = data => request.post('admin/user/edit', data);
 export const apiUserDetail = id => request.post('admin/user/edit/' + id);
 
 /**
+ * 删除用户
+ */
+export const apiUserDelete = id => request.post('admin/user/edit/' + id);
+
+/**
  * 头像上传
  */
 export const apiUploadImage = data => request.post('admin/upload/image', data);

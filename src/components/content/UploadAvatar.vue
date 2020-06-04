@@ -1,5 +1,8 @@
 <template>
   <v-row>
+    <v-avatar v-if="value">
+      <img :src="value" alt="头像">
+    </v-avatar>
     <v-file-input v-model="file" :label="label" :clearable="clearable" @change="change" accept=".jpg,.jpeg,.png,.gif" />
   </v-row>
 </template>
@@ -20,6 +23,7 @@ export default {
   },
   methods: {
     async change(file) {
+      if (!file) return;
       const fd = new FormData();
       fd.append('image', file);
       const res = await apiUploadImage(fd);

@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    value: { type: String, require: true },
+    value: { type: [Number, String], require: true },
     label: { type: String, require: true },
     items: { type: Array, require: true },
     clearable: { type: Boolean, default: true }
