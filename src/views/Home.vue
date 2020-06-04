@@ -4,6 +4,7 @@
     <app-header @toggleDrawer="drawer = !drawer" />
     <v-content>
       <v-container>
+        <h2 class="mb-2">{{ $route.meta.title }}</h2>
         <router-view />
       </v-container>
     </v-content>

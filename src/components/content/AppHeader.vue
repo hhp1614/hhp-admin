@@ -5,17 +5,17 @@
       <h2 class="ml-6">后台管理</h2>
     </div>
 
-    <v-spacer></v-spacer>
+    <v-spacer />
 
-    <span class="mr-2">{{ userInfo.username }}，{{ greetingText }}</span>
+    <span class="mr-2">{{ info.username }}，{{ greetingText }}</span>
     <v-menu open-on-hover bottom left offset-y>
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-btn v-on="on" color="fff" icon fab>
           <v-icon>mdi-account-circle</v-icon>
         </v-btn>
       </template>
       <v-list>
-        <v-list-item @click="logout">
+        <v-list-item @click="$router.push('/login')">
           <v-list-item-title>退出登录</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -24,15 +24,11 @@
 </template>
 
 <script>
-import config from '../../config';
 import { mapState } from 'vuex';
 
 export default {
-  data: () => ({
-    baseURL: config.baseURL
-  }),
   computed: {
-    ...mapState(['userInfo']),
+    ...mapState({ info: 'userInfo' }),
     // 问候语
     greetingText() {
       const h = new Date().getHours();
@@ -42,11 +38,6 @@ export default {
       if (h <= 13) return '中午好~';
       if (h <= 18) return '下午好~';
       else return '晚上好~';
-    }
-  },
-  methods: {
-    logout() {
-      this.$router.push('/login');
     }
   }
 };

@@ -8,6 +8,7 @@
           <v-text-field
             v-model="form.password"
             :rules="rules.password"
+            @keydown.enter="login"
             label="密码"
             type="password"
             required
@@ -15,7 +16,9 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn :disabled="!valid" :loading="loading" @click="login" color="primary" block>登录</v-btn>
+        <v-btn :disabled="!valid" :loading="$store.state.loading" @click="login" color="primary" block>
+          登录
+        </v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -23,7 +26,7 @@
 
 <script>
 import { apiLogin } from '../api';
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -47,23 +50,21 @@ export default {
       }
     };
   },
-  computed: {
-    ...mapState(['loading'])
-  },
   created() {
     localStorage.clear();
   },
   methods: {
-    ...mapActions(['actionUpdateUserInfo']),
-    login() {
-      apiLogin(this.form).then(res => {
-        this.$common.successMessage(res['msg']);
-        localStorage.token = res.data.token;
-        localStorage.userInfo = JSON.stringify(res.data);
-        this['actionUpdateUserInfo'](res.data);
-        console.log(res.data);
-        this.$router.push('/');
-      });
+    ...mapActions({ updateUserInfo: 'actionUpdateUserInfo' }),
+    async login() {
+      const res = await apiLogin(this.form);
+      this.$common.successMessage(res.msg);
+
+      localStorage.token = res.data.token;
+      localStorage.userInfo = JSON.stringify(res.data);
+
+      this.updateUserInfo(res.data);
+
+      await this.$router.push('/');
     }
   }
 };

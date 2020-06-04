@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Message from './components/common/Message';
+import Message from './components/content/Message';
 
 export default {
   components: { Message },

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { CHANGE_LOADING, CHANGE_MESSAGE, UPDATE_USER_INFO } from './types';
+import { CHANGE_LOADING, CHANGE_MESSAGE, UPDATE_PAGINATION, UPDATE_USER_INFO } from './types';
+import { common } from '../utils/common';
 
 Vue.use(Vuex);
 
@@ -18,7 +19,16 @@ export default new Vuex.Store({
       text: ''
     },
     // 用户信息
-    userInfo: localStorage.userInfo ? JSON.parse(localStorage.userInfo) : {}
+    userInfo: localStorage.userInfo ? JSON.parse(localStorage.userInfo) : {},
+    // 分页信息
+    pagination: {
+      // 当前页数
+      page: 1,
+      // 每页显示数量
+      size: common.config.pageSize,
+      // 总数
+      total: 0
+    }
   },
   mutations: {
     [CHANGE_LOADING](state, data) {
@@ -29,6 +39,9 @@ export default new Vuex.Store({
     },
     [UPDATE_USER_INFO](state, data) {
       state.userInfo = data;
+    },
+    [UPDATE_PAGINATION](state, data) {
+      state.pagination = data;
     }
   },
   actions: {
@@ -43,6 +56,10 @@ export default new Vuex.Store({
     // 更新用户信息
     actionUpdateUserInfo({ commit }, data) {
       commit(UPDATE_USER_INFO, data);
+    },
+    // 更新分页信息
+    actionUpdatePagination({ commit }, data) {
+      commit(UPDATE_PAGINATION, data);
     }
   },
   modules: {}

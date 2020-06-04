@@ -1,11 +1,11 @@
 import axios from 'axios';
 import router from '../router';
 import store from '../store';
-import config from '../config';
+import { common } from './common';
 
 // 创建 axios 实例
 const service = axios.create({
-  baseURL: config.baseURL,
+  baseURL: common.config.baseURL,
   timeout: 15 * 1000,
   responseType: 'json',
   headers: {

@@ -13,11 +13,12 @@ const routes = [
   {
     path: '/',
     component: Home,
+    redirect: '/dashboard',
     children: [
-      { path: '/dashboard', component: Dashboard, title: '仪表盘', icon: 'mdi-view-dashboard' },
-      { path: '/user', component: User, title: '用户管理', icon: 'mdi-account-box-multiple' },
-      { path: '/article', component: Article, title: '标签管理', icon: 'mdi-tag-multiple' },
-      { path: '/tag', component: Tag, title: '文章管理', icon: 'mdi-text-box-multiple' }
+      { path: '/dashboard', component: Dashboard, meta: { title: '仪表盘', icon: 'mdi-view-dashboard' } },
+      { path: '/user', component: User, meta: { title: '用户管理', icon: 'mdi-account-box-multiple' } },
+      { path: '/article', component: Article, meta: { title: '标签管理', icon: 'mdi-tag-multiple' } },
+      { path: '/tag', component: Tag, meta: { title: '文章管理', icon: 'mdi-text-box-multiple' } }
     ]
   },
   { path: '/login', component: Login }

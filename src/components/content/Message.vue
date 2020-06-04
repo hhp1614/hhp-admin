@@ -15,7 +15,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['message'])
+    ...mapState({ message: 'message' })
   }
 };
 </script>
