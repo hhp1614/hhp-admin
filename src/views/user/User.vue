@@ -97,7 +97,7 @@ export default {
     },
     add() {
       this.form = formDefault;
-      this.dialog = { show: true, title: '添加用户' }
+      this.dialog = { show: true, title: '添加用户' };
     },
     async detail(item) {
       const res = await apiUserDetail(item.id);

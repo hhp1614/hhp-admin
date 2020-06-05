@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-avatar v-if="value">
-      <img :src="value" alt="头像">
+      <img :src="value" alt="头像" />
     </v-avatar>
     <v-file-input v-model="file" :label="label" :clearable="clearable" @change="change" accept=".jpg,.jpeg,.png,.gif" />
   </v-row>
