@@ -20,7 +20,7 @@
       <form-item-text v-model="form.email" label="邮箱" />
       <form-item-select v-model="form.role" :items="roleList" label="角色" />
       <form-item-textarea v-model="form.summary" label="简介" />
-      <upload-avatar v-model="form.avatar" label="选择头像" />
+      <upload-avatar v-model="form.avatar" />
     </dialog-form>
   </div>
 </template>
@@ -65,8 +65,8 @@ export default {
       ],
       tableData: [],
       username: '',
-      dialog: dialogDefault,
-      form: formDefault,
+      dialog: { ...dialogDefault },
+      form: { ...formDefault },
       roleList: [
         { text: '普通用户', value: 1 },
         { text: '管理员', value: 2 }

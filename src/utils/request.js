@@ -38,7 +38,7 @@ service.interceptors.response.use(
     store.dispatch('actionChangeLoading', false);
     const { status, data } = error.response || {};
     if (data) {
-      store.dispatch('actionChangeMessage', { success: false, text: data.msg });
+      store.dispatch('actionChangeMessage', { success: false, text: data.msg ?? data.message ?? '服务器错误' });
     }
     if (status === 401) {
       router.push('/login');
