@@ -118,11 +118,11 @@ export default {
       const res = form.id ? await apiUserEdit(form) : await apiUserAdd(form);
       this.$common.successMessage(res.msg);
       this.clear();
+      await this.getData();
     },
     clear() {
       this.dialog = dialogDefault;
       this.form = formDefault;
-      this.getData();
     }
   }
 };
