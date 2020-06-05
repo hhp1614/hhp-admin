@@ -13,6 +13,7 @@
 </template>
 
 <script>
+// 表单项 多行文本框
 export default {
   props: {
     value: { type: String, require: true },

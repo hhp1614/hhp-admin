@@ -3,7 +3,7 @@
     <app-sidebar :drawer="drawer" />
     <app-header @toggleDrawer="drawer = !drawer" />
     <v-content>
-      <v-container>
+      <v-container fluid>
         <h2 class="mb-2">{{ $route.meta.title }}</h2>
         <router-view />
       </v-container>

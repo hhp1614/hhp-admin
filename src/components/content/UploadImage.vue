@@ -3,9 +3,11 @@
     <v-avatar v-if="value">
       <img :src="value" alt="头像" />
     </v-avatar>
+
+    <!-- 上传按钮 -->
     <v-btn :loading="$store.state.loading" @click="$refs.uploader.click()" class="ml-4">
       <v-icon left>mdi-cloud-upload</v-icon>
-      选择图片
+      {{ text }}
     </v-btn>
     <input @change="change" ref="uploader" type="file" accept=".jpg,.jpeg,.png,.gif" hidden />
   </v-row>
@@ -14,10 +16,13 @@
 <script>
 import { apiUploadImage } from '../../api';
 
+// 图片上传
 export default {
   props: {
     // 图片地址
-    value: { type: String, require: true }
+    value: { type: String, require: true },
+    // 按钮文本
+    text: { type: String, default: '选择图片' }
   },
   methods: {
     // 上传图片

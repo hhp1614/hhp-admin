@@ -1,4 +1,3 @@
-<!-- 全局消息组件 -->
 <template>
   <v-snackbar v-model="message.show" :timeout="timeout" :color="message.success ? 'success' : 'error'" top>
     {{ message.text }}
@@ -8,9 +7,11 @@
 <script>
 import { mapState } from 'vuex';
 
+// 全局消息组件
 export default {
   data() {
     return {
+      // 持续时间
       timeout: 2000
     };
   },

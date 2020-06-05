@@ -15,11 +15,14 @@
 </template>
 
 <script>
+// 侧边栏
 export default {
   props: {
+    // 是否显示
     drawer: { type: Boolean, require: true }
   },
   computed: {
+    // 导航栏路由
     items() {
       return this.$router.options.routes.find(i => i.path === '/').children;
     }

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// 表单项 下拉菜单
 export default {
   props: {
     value: { type: [Number, String], require: true },

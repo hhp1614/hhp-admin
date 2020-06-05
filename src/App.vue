@@ -12,6 +12,7 @@ import Message from './components/content/Message';
 export default {
   components: { Message },
   created() {
+    // 使用暗色主题
     this.$vuetify.theme.dark = true;
   }
 };

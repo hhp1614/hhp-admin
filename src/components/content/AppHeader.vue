@@ -26,6 +26,7 @@
 <script>
 import { mapState } from 'vuex';
 
+// 头部
 export default {
   computed: {
     ...mapState({ info: 'userInfo' }),

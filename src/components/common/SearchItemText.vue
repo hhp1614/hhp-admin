@@ -1,11 +1,19 @@
 <template>
-  <v-row>
-    <v-text-field :value="value" :label="label" :type="type" :counter="counter" :clearable="clearable" @input="input" />
-  </v-row>
+  <v-col>
+    <v-text-field
+      :value="value"
+      :label="label"
+      :type="type"
+      :counter="counter"
+      :clearable="clearable"
+      @input="input"
+      dense
+    />
+  </v-col>
 </template>
 
 <script>
-// 表单项 文本框
+// 搜索项 文本框
 export default {
   props: {
     value: { type: String, require: true },

@@ -6,8 +6,10 @@
 </template>
 
 <script>
+// 表格通用操作列
 export default {
   props: {
+    // 当前行的数据
     item: { type: Object, require: true }
   }
 };
