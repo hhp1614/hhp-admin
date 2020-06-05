@@ -20,7 +20,7 @@
       <form-item-text v-model="form.email" label="邮箱" />
       <form-item-select v-model="form.role" :items="roleList" label="角色" />
       <form-item-textarea v-model="form.summary" label="简介" />
-      <upload-avatar v-model="form.avatar" />
+      <upload-image v-model="form.avatar" />
     </dialog-form>
   </div>
 </template>
@@ -35,14 +35,14 @@ import AddBtn from '../../components/common/AddBtn';
 import FormItemText from '../../components/common/FormItemText';
 import FormItemSelect from '../../components/common/FormItemSelect';
 import FormItemTextarea from '../../components/common/FormItemTextarea';
-import UploadAvatar from '../../components/content/UploadAvatar';
+import UploadImage from '../../components/content/UploadImage';
 
 const dialogDefault = { show: false, title: '' };
 const formDefault = { id: '', username: '', password: '', email: '', role: '', avatar: '', summary: '' };
 
 export default {
   components: {
-    UploadAvatar,
+    UploadImage,
     FormItemTextarea,
     FormItemSelect,
     FormItemText,
